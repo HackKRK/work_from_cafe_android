@@ -1,5 +1,7 @@
 package com.hackkrk.workforcafe;
 
+import com.hackkrk.workforcafe.model.Cafe;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
