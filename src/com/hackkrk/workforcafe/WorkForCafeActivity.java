@@ -1,6 +1,8 @@
 package com.hackkrk.workforcafe;
 
+import com.hackkrk.workforcafe.cafes.GetCafesCommand;
 import com.hackkrk.workforcafe.model.Cafe;
+import com.hackkrk.workforcafe.network.ResponseHandler;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,12 +15,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class WorkForCafeActivity extends Activity {
   
   List<Cafe> mCafes = new ArrayList<Cafe>();
+  private GetCafesCommand getCafesCommand;
 
   @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,14 +32,27 @@ public class WorkForCafeActivity extends Activity {
         TextView messanger = (TextView) findViewById(R.id.helloTextView);
         messanger.setText("Cafe list");
         
-        ListView cafeList = (ListView) findViewById(R.id.helloTextView);
+        final ListView cafeList = (ListView) findViewById(R.id.helloTextView);
         
         
         CafeAdapter cafeAdapter = new CafeAdapter(this, 1, mCafes);
 //        cafeAdapter.add(object)
         cafeList.setAdapter(cafeAdapter);
 //        new GetRestaurantsTask()
+        getCafesCommand = new GetCafesCommand(new ResponseHandler<Cafe[]>() {
+          
+          public void onResult(Cafe[] object) {
+              mCafes.clear();
+              mCafes.addAll(new ArrayList<Cafe>(Arrays.asList(object)));
+          }
+          
+          public void onError(Throwable th) {
+            // TODO Auto-generated method stub
+            
+          }
+        });
         
+        getCafesCommand.execute();
     }
   
   class CafeAdapter extends ArrayAdapter<Cafe>{
@@ -74,13 +91,17 @@ public class WorkForCafeActivity extends Activity {
       Cafe cafe = mCafes.get(position);
       
       StringBuffer sb = new StringBuffer();
-      Map<String, String> description = 
+      Map<String, String> description = cafe.getDescription();
         
+      for (String s : description.keySet()) {
+        sb.append(s + ": "+ description.get(s) + "\n");
+      }
       
       viewCache.name.setText(cafe.getName());
-      viewCache.desc.setText(cafe.getDesc());
+      viewCache.desc.setText(sb.toString());
       viewCache.adderss.setText(cafe.getAddress());
       
+      return view;
       
     }
     
@@ -89,7 +110,6 @@ public class WorkForCafeActivity extends Activity {
       TextView desc;
       TextView adderss;
     }
-    
     
   }
 }
