@@ -5,8 +5,15 @@
     android:orientation="vertical" >
 
     <TextView
+        android:id="@+id/helloTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello" />
+
+    <ListView
+        android:id="@+id/lv_cafes"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>
