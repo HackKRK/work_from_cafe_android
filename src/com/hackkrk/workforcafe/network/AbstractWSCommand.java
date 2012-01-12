@@ -33,7 +33,11 @@ public abstract class AbstractWSCommand<T> extends AsyncTask<Void, Void, T> {
 			if(responseCode == HttpStatus.SC_OK) {
 				HttpEntity entity = response.getEntity();
 				String jsonResult = EntityUtils.toString(entity);
-				T object = getGsonParser().fromJson(jsonResult, getTargetParseClass());
+				int start = jsonResult.indexOf("[");
+//				int end = jsonResult.indexOf("]");
+				String processedResult = jsonResult.substring(start);
+				
+        T object = getGsonParser().fromJson(processedResult, getTargetParseClass());
 				return object;
 			} else {
 				throw new Exception("Error during downloading data from webservice, status code: " + responseCode);
