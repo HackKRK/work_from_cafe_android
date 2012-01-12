@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class WorkForCafeActivity extends Activity {
   
@@ -71,6 +72,10 @@ public class WorkForCafeActivity extends Activity {
       }
       
       Cafe cafe = mCafes.get(position);
+      
+      StringBuffer sb = new StringBuffer();
+      Map<String, String> description = 
+        
       
       viewCache.name.setText(cafe.getName());
       viewCache.desc.setText(cafe.getDesc());
