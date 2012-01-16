@@ -17,7 +17,6 @@ public final class R {
         public static final int address=0x7f050002;
         public static final int desc=0x7f050001;
         public static final int helloTextView=0x7f050003;
-        public static final int lv_cafes=0x7f050004;
         public static final int name=0x7f050000;
     }
     public static final class layout {

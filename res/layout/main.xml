@@ -11,9 +11,17 @@
         android:text="@string/hello" />
 
     <ListView
-        android:id="@+id/lv_cafes"
+        android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
     </ListView>
+
+     <ProgressBar android:id="@android:id/empty"
+               android:layout_width="fill_parent"
+               android:layout_height="fill_parent"
+               android:background="#000000"
+               android:text="Loading"/>
+     
+
 
 </LinearLayout>

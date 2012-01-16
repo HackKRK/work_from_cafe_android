@@ -4,6 +4,8 @@ import com.hackkrk.workforcafe.cafes.GetCafesCommand;
 import com.hackkrk.workforcafe.model.Cafe;
 import com.hackkrk.workforcafe.network.ResponseHandler;
 
+import android.R.anim;
+import android.R.id;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -33,7 +35,7 @@ public class WorkForCafeActivity extends Activity {
     TextView messanger = (TextView) findViewById(R.id.helloTextView);
     messanger.setText("Cafe list");
 
-    final ListView cafeList = (ListView) findViewById(R.id.lv_cafes);
+    final ListView cafeList = (ListView) findViewById(id.list);
 
     final CafeAdapter cafeAdapter = new CafeAdapter(this, 1, mCafes);
     //        cafeAdapter.add(object)
